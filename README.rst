@@ -27,7 +27,7 @@ Installation
 Normal Installation (packaged egg)
 ----------------------------------
 
-Download the `CiscoPluggableOptics ZenPack <http://wiki.zenoss.org/ZenPack:Cisco_Pluggable_Optics>`_.
+Download the `CiscoPluggableOptics ZenPack <http://wiki.zenoss.org/ZenPack:CiscoPluggableOptics>`_.
 Copy the .egg file to your Zenoss server and run the following commands as the zenoss
 user.
 
