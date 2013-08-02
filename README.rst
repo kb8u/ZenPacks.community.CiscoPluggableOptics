@@ -69,3 +69,12 @@ Monitoring Templates
 - Devices/CiscoPluggableOpticsSensorCelcius
 - Devices/CiscoPluggableOpticsSensorDbm
 - Devices/CiscoPluggableOpticsSensorVoltsdc
+
+Command
+------
+
+- Update_optical_power_threshold
+Create rrd template local copy and/or update the threshold for receive
+optical power on all Cisco Pluggable Optic Modules so that they will
+generate a Error level alert if the optical signal degrades 1 dB from
+the current value.
