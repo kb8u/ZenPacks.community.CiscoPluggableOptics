@@ -8,7 +8,7 @@ About
 This ZenPack provides Cisco pluggable optics module monitoring of bias current,
 supply voltage, temperature, transmit and receive optical signal levels.  Also
 included is a script to set a threshold for monitoring of receive optical
-signal levels 1 dBm below the current value.
+signal levels 3 dBm below the current value.
 
 Requirements
 ============
@@ -76,5 +76,5 @@ Command
 - Update_optical_power_threshold
 Create rrd template local copy and/or update the threshold for receive
 optical power on all Cisco Pluggable Optic Modules so that they will
-generate a Error level alert if the optical signal degrades 1 dB from
+generate a Error level alert if the optical signal degrades 3 dB from
 the current value.
