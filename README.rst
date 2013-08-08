@@ -6,8 +6,10 @@ About
 =====
 
 This ZenPack provides Cisco pluggable optics module monitoring of bias current,
-supply voltage, temperature, transmit and receive optical signal levels.  Also
-included is a script to set a threshold for monitoring of receive optical
+supply voltage, temperature, transmit and receive optical signal levels for
+modules that respond via the CISCO-ENTITY-SENSOR-MIB
+
+Also included is a script to set a threshold for monitoring of receive optical
 signal levels 3 dBm below the current value.
 
 Requirements
