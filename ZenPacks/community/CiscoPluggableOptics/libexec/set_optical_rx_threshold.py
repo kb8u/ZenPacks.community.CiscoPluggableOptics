@@ -13,7 +13,7 @@
 usage = '''
 Create rrd template local copy and/or update the threshold for receive
 optical power on all Cisco Pluggable Optic Modules so that they will
-generate a Error level alert if the optical signal degrades 1 dB from
+generate a Error level alert if the optical signal degrades 3 dB from
 the current value.
 
 set_optical_rx_threshold.py <device>
@@ -68,7 +68,7 @@ for component in device.getMonitoredComponents():
         print '%s threshold not changed:' % component.id
         print 'rrd file is missing or too new. Try again in 10 minutes.'
         continue
-    new_minval = current - 10.0
+    new_minval = current - 30.0
     threshold.minval = str(new_minval)
     threshold.enabled = True
 
