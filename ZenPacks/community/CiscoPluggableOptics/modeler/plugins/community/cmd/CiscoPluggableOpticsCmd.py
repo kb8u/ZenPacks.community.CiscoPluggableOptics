@@ -13,6 +13,7 @@ to locate pluggable optics modules.
 """
 
 import re
+import pprint
 #from Products.DataCollector.plugins.CollectorPlugin import CommandPlugin
 from Products.DataCollector.plugins.CollectorPlugin import PythonPlugin
 from Products.DataCollector.plugins.DataMaps import ObjectMap, RelationshipMap
@@ -45,20 +46,63 @@ class CiscoPluggableOpticsCmd(PythonPlugin):
 
     def process(self, device, results, log):
         log.info("Starting process() for modeler CiscoPluggableOpticsCmd")
-        log.info('got results: %s' % results)
-        return
 
-        objectmaps = []
+        # lines that match these indicate a sensor type change
+        temperature_re = re.compile('celsius',re.IGNORECASE)
+        voltage_re = re.compile('volt',re.IGNORECASE)
+        transmit_re = re.compile('transmit',re.IGNORECASE)
+        receive_re = re.compile('receive',re.IGNORECASE)
+        intf_re = re.compile(r'^(g[ie]*\d+\S+)',re.IGNORECASE)
 
-        # process results (which contains output from command) and get
-        # inteface names, etc.
-        intfs = []
-        sensorType = []
-        sensorScale = []
-        sensorPrecision = []
+        # loop over lines from device & find ports with various types of sensors
+        sensor = {}
+        current_sensor = None
+        for line in results.split('\n'):
+            if temperature_re.search(line):
+               log.debug('changed current_sensor: %s' % current_sensor)
+               current_sensor = 'cmdCelsius'
+               sensor[current_sensor] = []
+            if voltage_re.search(line):
+               log.debug('changed current_sensor: %s' % current_sensor)
+               current_sensor = 'cmdVoltsdc'
+               sensor[current_sensor] = []
+            if transmit_re.search(line):
+               log.debug('changed current_sensor: %s' % current_sensor)
+               current_sensor = 'cmdTxDbm'
+               sensor[current_sensor] = []
+            if receive_re.search(line):
+               log.debug('changed current_sensor: %s' % current_sensor)
+               current_sensor = 'cmdRxDbm'
+               sensor[current_sensor] = []
 
+            line.strip(' \n')
+            if intf_re.search(line):
+                intf = intf_re.search(line).groups()[0]
+                log.debug('found intf: %s' % intf)
+                if current_sensor:
+                    sensor[current_sensor].append(intf)
+
+        # loop over lines to find column positions of description
+        next_line_has_column_headers = False
+        descr_pos = 0
+        for line in results.split('\n'):
+            if line.endswith('show interface description'):
+                next_line_has_column_headers = True
+            if next_line_has_column_headers:
+                columns = line.split()
+                for column in columns:
+                    if re.match(r'^descr',re.IGNORECASE):
+                        descr_pos = line.find(column)
+
+        # loop over lines and find interface description
+        intf_descr = {}
+        for line in results.split('\n'):
+
+        log.debug(pprint.pformat(sensor))
+        return       
+        
         rm = self.relMap()
-        for intf in intfs:
+        for sensor_type in sensor:
             om = self.objectMap()
             om.id = self.prepId(intf)
             om.title = intf
