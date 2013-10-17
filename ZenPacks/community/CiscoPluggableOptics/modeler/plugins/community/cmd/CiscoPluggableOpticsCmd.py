@@ -24,7 +24,10 @@ class CiscoPluggableOpticsCmd(PythonPlugin):
     "Map Cisco Entity sensors on intefaces to the python class for them"
 
     # The command to run.
-    command = "terminal length 0\nsho int tran detail"
+    command =   "terminal length 0\n" \
+              + "terminal width 254\n" \
+              + "sho int tran detail\n" \
+              + "show interface description\n"
 
     modname = "ZenPacks.community.CiscoPluggableOptics.CiscoPluggableOptics"
     relname = "cards"
@@ -55,9 +58,11 @@ class CiscoPluggableOpticsCmd(PythonPlugin):
         intf_re = re.compile(r'^(g[ie]*\d+\S+)',re.IGNORECASE)
 
         # loop over lines from device & find ports with various types of sensors
+        log.debug('Pass 1 on results, checking for sensors...')
         sensor = {}
         current_sensor = None
         for line in results.split('\n'):
+            log.debug('Processing line %s' % line)
             if temperature_re.search(line):
                log.debug('changed current_sensor: %s' % current_sensor)
                current_sensor = 'cmdCelsius'
@@ -82,25 +87,68 @@ class CiscoPluggableOpticsCmd(PythonPlugin):
                 if current_sensor:
                     sensor[current_sensor].append(intf)
 
-        # loop over lines to find column positions of description
-        next_line_has_column_headers = False
+            # no more sensors in output once next command starts
+            if line.endswith('show interface description'):
+                break
+
+        if not sensor:
+            log.info("Couldn't find any optical sensors on interfaces")
+            return 
+        else:
+            log.debug('found sensors: %s' % pprint.pformat(sensor))
+
+        # loop over lines to find column positions of interface & description
+        log.debug('Pass 2 on results, finding column positions...')
+        saw_column_headers = False
+        interface_pos = 0
         descr_pos = 0
         for line in results.split('\n'):
+            log.debug('Processing line %s' % line)
             if line.endswith('show interface description'):
-                next_line_has_column_headers = True
-            if next_line_has_column_headers:
+                saw_column_headers = True
+                continue
+            if saw_column_headers:
                 columns = line.split()
                 for column in columns:
-                    if re.match(r'^descr',re.IGNORECASE):
+                    if re.match(r'^descr',column,re.IGNORECASE):
                         descr_pos = line.find(column)
+                    if re.match(r'^int',column,re.IGNORECASE):
+                        interface_pos = line.find(column)
+                break
+        log.debug('interface_pos %d descr_pos %d' % (interface_pos,descr_pos))
 
         # loop over lines and find interface description
         intf_descr = {}
-        for line in results.split('\n'):
+        if descr_pos == 0:
+            log.info("Can't determine interface descriptions")
+        else:
+            log.debug('Pass 3 on results, checking for interface descriptions')
+            saw_column_headers = False
+            for line in results.split('\n'):
+                log.debug('Processing line %s' % line)
+                if line.endswith('show interface description'):
+                    saw_column_headers = True
+                    continue
+                if saw_column_headers:
+                    intf = line[interface_pos:].split()[0]
+                    log.debug('found intf %s' % intf)
+                    if len(line) > descr_pos:
+                        intf_descr[intf]  = line[descr_pos:]
+                    else:
+                        intf_descr[intf] = ''
+                    log.debug('interface description: "%s"' % intf_descr[intf])
+                # no more interfaces in output once next command starts
+                if line.endswith('>'):
+                    break
+            if not intf_descr:
+                log.info('No interface descriptions found')
+            else:
+                log.debug('interface descriptions: %s' % \
+                          pprint.pformat(intf_descr))
+            
 
-        log.debug(pprint.pformat(sensor))
-        return       
-        
+        return
+       
         rm = self.relMap()
         for sensor_type in sensor:
             om = self.objectMap()
