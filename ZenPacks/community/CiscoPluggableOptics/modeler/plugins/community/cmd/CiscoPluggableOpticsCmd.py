@@ -14,40 +14,30 @@ to locate pluggable optics modules.
 
 import re
 import pprint
-#from Products.DataCollector.plugins.CollectorPlugin import CommandPlugin
-from Products.DataCollector.plugins.CollectorPlugin import PythonPlugin
+from Products.DataCollector.plugins.CollectorPlugin import CommandPlugin
 from Products.DataCollector.plugins.DataMaps import ObjectMap, RelationshipMap
 
 
 
 
-#class CiscoPluggableOpticsCmd(CommandPlugin):
-class CiscoPluggableOpticsCmd(PythonPlugin):
+class CiscoPluggableOpticsCmd(CommandPlugin):
+#class CiscoPluggableOpticsCmd(PythonPlugin):
     """Map Cisco Entity sensors on intefaces to the python class for them.
 Assumes data that looks like file sample_output.txt"""
 
 
     # The command to run.
-    command =   "terminal length 0\n" \
-              + "terminal width 254\n" \
-              + "sho int tran detail\n" \
-              + "show interface description\n"
+    command =   "sho int tran detail\r" \
+              + "show interface description\r"
 
     modname = "ZenPacks.community.CiscoPluggableOptics.CiscoPluggableOptics"
     relname = "cards"
     compname = "hw"
 
-    ######## delete this when changing to Command plugin!!!!
-    def collect(self,device,log):
-        log.info('Starting CiscoPluggableOpticsCmd modeler')
-        to_add_file = '/home/zenoss/zenpacks/ZenPacks.community.CiscoPluggableOptics/ZenPacks/community/CiscoPluggableOptics/modeler/plugins/community/cmd/sample_output.txt'
-        results = ''
-        try:
-            f = open(to_add_file)
-            results = f.read()
-            f.close()
-        except IOError:
-            log.error("Couldn't open %s" % to_add_file)
+
+    def preprocess(self, results, log):
+        """CommandPlugin preprocess strips off echoed back command.  The
+           echoed back command is needed here to tell output sections apart."""
         return results
 
 
@@ -142,16 +132,16 @@ Assumes data that looks like file sample_output.txt"""
                     saw_column_headers = True
                     continue
                 if saw_column_headers:
-                    intf = line[interface_pos:].split()[0]
-                    log.debug('found intf %s' % intf)
+                    try:
+                        intf = line[interface_pos:].split()[0]
+                        log.debug('found intf %s' % intf)
+                    except IndexError:
+                        continue
                     if len(line) > descr_pos:
                         intf_descr[intf]  = line[descr_pos:]
                     else:
                         intf_descr[intf] = ''
                     log.debug('interface description: "%s"' % intf_descr[intf])
-                # no more interfaces in output once next command starts
-                if line.endswith('>'):
-                    break
             if not intf_descr:
                 log.info('No interface descriptions found')
             else:
