@@ -69,8 +69,14 @@ False
 <property type="boolean" id="hasSummary" mode="w" >
 True
 </property>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
 <tomanycont id='graphPoints'>
 <object id='entSensorValue' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
 <property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
 LINE
 </property>
@@ -172,8 +178,14 @@ False
 <property type="boolean" id="hasSummary" mode="w" >
 True
 </property>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
 <tomanycont id='graphPoints'>
 <object id='entSensorValue' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
 <property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
 LINE
 </property>
@@ -203,6 +215,40 @@ AVERAGE
 </property>
 </object>
 </tomanycont>
+</object>
+</tomanycont>
+</object>
+<!-- ('', 'zport', 'dmd', 'Devices', 'rrdTemplates', 'CiscoPluggableOpticsSensorCmdcelsius') -->
+<object id='/zport/dmd/Devices/rrdTemplates/CiscoPluggableOpticsSensorCmdcelsius' module='Products.ZenModel.RRDTemplate' class='RRDTemplate'>
+<property type="string" id="targetPythonClass" mode="w" >
+ZenPacks.community.CiscoPluggableOptics.CiscoPluggableOptics.CiscoPluggableOptics
+</property>
+<tomanycont id='datasources'>
+<object id='CmdCelcius' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+COMMAND
+</property>
+<property type="boolean" id="enabled" mode="w" >
+False
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="string" id="commandTemplate" mode="w" >
+show int ${here/ifDescr} tran detail
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="boolean" id="usessh" mode="w" >
+True
+</property>
+<property type="string" id="parser" mode="w" >
+ZenPacks.community.CiscoPluggableOptics.parsers.ShowIntTranDetail
+</property>
 </object>
 </tomanycont>
 </object>
@@ -251,6 +297,12 @@ True
 </tomanycont>
 <tomanycont id='thresholds'>
 <object id='Optical signal too low' module='Products.ZenModel.MinMaxThreshold' class='MinMaxThreshold'>
+<property type="string" id="eventClass" mode="w" >
+/Net/Link
+</property>
+<property type="int" id="severity" mode="w" >
+4
+</property>
 <property label="DataPoints" type="lines" id="dsnames" mode="w" >
 ['entSensorValue_entSensorValue']
 </property>
@@ -259,12 +311,6 @@ False
 </property>
 <property type="string" id="minval" mode="w" >
 -400
-</property>
-<property type="string" id="eventClass" mode="w" >
-/Net/Link
-</property>
-<property type="int" id="severity" mode="w" >
-4
 </property>
 <property type="int" id="escalateCount" mode="w" >
 0
@@ -297,8 +343,14 @@ False
 <property type="boolean" id="hasSummary" mode="w" >
 True
 </property>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
 <tomanycont id='graphPoints'>
 <object id='entSensorValue' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
 <property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
 LINE
 </property>
@@ -400,8 +452,14 @@ False
 <property type="boolean" id="hasSummary" mode="w" >
 True
 </property>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
 <tomanycont id='graphPoints'>
 <object id='entSensorValue' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
 <property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
 LINE
 </property>
