@@ -87,7 +87,11 @@ class CiscoPluggableOptics(ExpansionCard, ManagedEntity):
     name = viewName
 
     def getRRDTemplateName(self):
-        return 'CiscoPluggableOpticsSensor' + self.entSensorType.capitalize()
+        if self.device().zCommandProtocol == 'telnet':
+            return 'CiscoPluggableOpticsSensorTelnet' \
+                + self.entSensorType.capitalize()
+        else:
+            return 'CiscoPluggableOpticsSensor' +self.entSensorType.capitalize()
 
     def manage_deleteComponent(self, REQUEST=None):
         """

@@ -21,7 +21,6 @@ from Products.DataCollector.plugins.DataMaps import ObjectMap, RelationshipMap
 
 
 class CiscoPluggableOpticsCmd(CommandPlugin):
-#class CiscoPluggableOpticsCmd(PythonPlugin):
     """Map Cisco Entity sensors on intefaces to the python class for them.
 Assumes data that looks like file sample_output.txt"""
 
@@ -120,6 +119,11 @@ Assumes data that looks like file sample_output.txt"""
         # This code assumes description comes last and interfaces names do
         # not have whitespace in them.  If that's not the case, more position
         # finding will be necessary
+        # BUG: there is no reliable way to send multiple commands to a Cisco.
+        # BUG: The command strings are sent and the cisco processes them, but
+        # BUG: zenoss may or may not see the command prompt before the 2nd
+        # BUG: command's output is processed.  If it does, all further
+        # BUG: processing is terminated and there are no descriptions.
         intf_descr = {}
         if descr_pos == 0:
             log.info("Can't determine interface descriptions")

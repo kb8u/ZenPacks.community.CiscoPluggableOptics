@@ -1,1 +1,2 @@
-Add installation notes here.
+The perl script telnet_parser.pl requires installation of Net::Telnet::Cisco.
+This is only needed for telnet based collection, not SSH.
