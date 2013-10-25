@@ -161,7 +161,7 @@ True
 500
 </property>
 <property type="string" id="units" mode="w" >
-Celcius
+Celsius
 </property>
 <property type="boolean" id="log" mode="w" >
 False
@@ -218,18 +218,154 @@ AVERAGE
 </object>
 </tomanycont>
 </object>
+<!-- ('', 'zport', 'dmd', 'Devices', 'rrdTemplates', 'CiscoPluggableOpticsSensorCmdMilliamps') -->
+<object id='/zport/dmd/Devices/rrdTemplates/CiscoPluggableOpticsSensorCmdMilliamps' module='Products.ZenModel.RRDTemplate' class='RRDTemplate'>
+<property type="string" id="targetPythonClass" mode="w" >
+ZenPacks.community.CiscoPluggableOptics.CiscoPluggableOptics.CiscoPluggableOptics
+</property>
+<tomanycont id='datasources'>
+<object id='CmdMilliamps' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+COMMAND
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="string" id="commandTemplate" mode="w" >
+show int ${here/ifDescr} tran detail
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="boolean" id="usessh" mode="w" >
+True
+</property>
+<property type="string" id="parser" mode="w" >
+ZenPacks.community.CiscoPluggableOptics.parsers.ShowIntTranDetail
+</property>
+</object>
+</tomanycont>
+</object>
+<!-- ('', 'zport', 'dmd', 'Devices', 'rrdTemplates', 'CiscoPluggableOpticsSensorCmdRxDbm') -->
+<object id='/zport/dmd/Devices/rrdTemplates/CiscoPluggableOpticsSensorCmdRxDbm' module='Products.ZenModel.RRDTemplate' class='RRDTemplate'>
+<property type="string" id="targetPythonClass" mode="w" >
+ZenPacks.community.CiscoPluggableOptics.CiscoPluggableOptics.CiscoPluggableOptics
+</property>
+<tomanycont id='datasources'>
+<object id='CmdRxDbm' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+COMMAND
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="string" id="commandTemplate" mode="w" >
+show int ${here/ifDescr} tran detail
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="boolean" id="usessh" mode="w" >
+True
+</property>
+<property type="string" id="parser" mode="w" >
+ZenPacks.community.CiscoPluggableOptics.parsers.ShowIntTranDetail
+</property>
+</object>
+</tomanycont>
+</object>
+<!-- ('', 'zport', 'dmd', 'Devices', 'rrdTemplates', 'CiscoPluggableOpticsSensorCmdTxDbm') -->
+<object id='/zport/dmd/Devices/rrdTemplates/CiscoPluggableOpticsSensorCmdTxDbm' module='Products.ZenModel.RRDTemplate' class='RRDTemplate'>
+<property type="string" id="targetPythonClass" mode="w" >
+ZenPacks.community.CiscoPluggableOptics.CiscoPluggableOptics.CiscoPluggableOptics
+</property>
+<tomanycont id='datasources'>
+<object id='CmdTxDbm' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+COMMAND
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="string" id="commandTemplate" mode="w" >
+show int ${here/ifDescr} tran detail
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="boolean" id="usessh" mode="w" >
+True
+</property>
+<property type="string" id="parser" mode="w" >
+ZenPacks.community.CiscoPluggableOptics.parsers.ShowIntTranDetail
+</property>
+</object>
+</tomanycont>
+</object>
+<!-- ('', 'zport', 'dmd', 'Devices', 'rrdTemplates', 'CiscoPluggableOpticsSensorCmdVoltsdc') -->
+<object id='/zport/dmd/Devices/rrdTemplates/CiscoPluggableOpticsSensorCmdVoltsdc' module='Products.ZenModel.RRDTemplate' class='RRDTemplate'>
+<property type="string" id="targetPythonClass" mode="w" >
+ZenPacks.community.CiscoPluggableOptics.CiscoPluggableOptics.CiscoPluggableOptics
+</property>
+<tomanycont id='datasources'>
+<object id='CmdVolts' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+COMMAND
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="string" id="commandTemplate" mode="w" >
+show int ${here/ifDescr} tran detail
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="boolean" id="usessh" mode="w" >
+True
+</property>
+<property type="string" id="parser" mode="w" >
+ZenPacks.community.CiscoPluggableOptics.parsers.ShowIntTranDetail
+</property>
+</object>
+</tomanycont>
+</object>
 <!-- ('', 'zport', 'dmd', 'Devices', 'rrdTemplates', 'CiscoPluggableOpticsSensorCmdcelsius') -->
 <object id='/zport/dmd/Devices/rrdTemplates/CiscoPluggableOpticsSensorCmdcelsius' module='Products.ZenModel.RRDTemplate' class='RRDTemplate'>
 <property type="string" id="targetPythonClass" mode="w" >
 ZenPacks.community.CiscoPluggableOptics.CiscoPluggableOptics.CiscoPluggableOptics
 </property>
 <tomanycont id='datasources'>
-<object id='CmdCelcius' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<object id='CmdCelsius' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
 <property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
 COMMAND
 </property>
 <property type="boolean" id="enabled" mode="w" >
-False
+True
 </property>
 <property type="string" id="eventClass" mode="w" >
 /Cmd/Fail
@@ -374,6 +510,524 @@ Optical Power
 </property>
 <property type="string" id="dpName" mode="w" >
 entSensorValue_entSensorValue
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+</tomanycont>
+</object>
+<!-- ('', 'zport', 'dmd', 'Devices', 'rrdTemplates', 'CiscoPluggableOpticsSensorTelnetCmdcelsius') -->
+<object id='/zport/dmd/Devices/rrdTemplates/CiscoPluggableOpticsSensorTelnetCmdcelsius' module='Products.ZenModel.RRDTemplate' class='RRDTemplate'>
+<property type="string" id="targetPythonClass" mode="w" >
+ZenPacks.community.CiscoPluggableOptics.CiscoPluggableOptics.CiscoPluggableOptics
+</property>
+<tomanycont id='datasources'>
+<object id='CmdCelsius' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+COMMAND
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="string" id="commandTemplate" mode="w" >
+${here/ZenPackManager/packs/ZenPacks.community.CiscoPluggableOptics/path}/libexec/telnet_parser.pl ${dev/manageIp} ${device/zCommandUsername} ${device/zCommandPassword} celsius ${here/ifDescr}
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='rval' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+</tomanycont>
+<tomanycont id='graphDefs'>
+<object id='Temperature' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+-1
+</property>
+<property type="int" id="maxy" mode="w" >
+-1
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<tomanycont id='graphPoints'>
+<object id='rval' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.2lf%s
+</property>
+<property type="string" id="legend" mode="w" >
+Degrees Celsius
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+CmdCelsius_rval
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+</tomanycont>
+</object>
+<!-- ('', 'zport', 'dmd', 'Devices', 'rrdTemplates', 'CiscoPluggableOpticsSensorTelnetCmdmilliamps') -->
+<object id='/zport/dmd/Devices/rrdTemplates/CiscoPluggableOpticsSensorTelnetCmdmilliamps' module='Products.ZenModel.RRDTemplate' class='RRDTemplate'>
+<property type="string" id="targetPythonClass" mode="w" >
+ZenPacks.community.CiscoPluggableOptics.CiscoPluggableOptics.CiscoPluggableOptics
+</property>
+<tomanycont id='datasources'>
+<object id='CmdMilliamps' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+COMMAND
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="string" id="commandTemplate" mode="w" >
+${here/ZenPackManager/packs/ZenPacks.community.CiscoPluggableOptics/path}/libexec/telnet_parser.pl ${dev/manageIp} ${device/zCommandUsername} ${device/zCommandPassword} milliamp ${here/ifDescr}
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='rval' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+<property type="string" id="rrdmin" mode="w" >
+0
+</property>
+</object>
+</tomanycont>
+</object>
+</tomanycont>
+<tomanycont id='graphDefs'>
+<object id='Bias Current' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+-1
+</property>
+<property type="int" id="maxy" mode="w" >
+-1
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<tomanycont id='graphPoints'>
+<object id='rval' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.2lf%s
+</property>
+<property type="string" id="legend" mode="w" >
+DC milliamps
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+CmdMilliamps_rval
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+</tomanycont>
+</object>
+<!-- ('', 'zport', 'dmd', 'Devices', 'rrdTemplates', 'CiscoPluggableOpticsSensorTelnetCmdrxdbm') -->
+<object id='/zport/dmd/Devices/rrdTemplates/CiscoPluggableOpticsSensorTelnetCmdrxdbm' module='Products.ZenModel.RRDTemplate' class='RRDTemplate'>
+<property type="string" id="targetPythonClass" mode="w" >
+ZenPacks.community.CiscoPluggableOptics.CiscoPluggableOptics.CiscoPluggableOptics
+</property>
+<tomanycont id='datasources'>
+<object id='CmdRxDbm' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+COMMAND
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="string" id="commandTemplate" mode="w" >
+${here/ZenPackManager/packs/ZenPacks.community.CiscoPluggableOptics/path}/libexec/telnet_parser.pl ${dev/manageIp} ${device/zCommandUsername} ${device/zCommandPassword} receive ${here/ifDescr}
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='rval' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+</tomanycont>
+<tomanycont id='graphDefs'>
+<object id='Receive dBm' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+-1
+</property>
+<property type="int" id="maxy" mode="w" >
+-1
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<tomanycont id='graphPoints'>
+<object id='rval' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.2lf%s
+</property>
+<property type="string" id="legend" mode="w" >
+Receive dBm
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+CmdRxDbm_rval
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+</tomanycont>
+</object>
+<!-- ('', 'zport', 'dmd', 'Devices', 'rrdTemplates', 'CiscoPluggableOpticsSensorTelnetCmdtxdbm') -->
+<object id='/zport/dmd/Devices/rrdTemplates/CiscoPluggableOpticsSensorTelnetCmdtxdbm' module='Products.ZenModel.RRDTemplate' class='RRDTemplate'>
+<property type="string" id="targetPythonClass" mode="w" >
+ZenPacks.community.CiscoPluggableOptics.CiscoPluggableOptics.CiscoPluggableOptics
+</property>
+<tomanycont id='datasources'>
+<object id='CmdTxDbm' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+COMMAND
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="string" id="commandTemplate" mode="w" >
+${here/ZenPackManager/packs/ZenPacks.community.CiscoPluggableOptics/path}/libexec/telnet_parser.pl ${dev/manageIp} ${device/zCommandUsername} ${device/zCommandPassword} transmit ${here/ifDescr}
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='rval' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+</tomanycont>
+<tomanycont id='graphDefs'>
+<object id='Transmit dBm' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+-1
+</property>
+<property type="int" id="maxy" mode="w" >
+-1
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<tomanycont id='graphPoints'>
+<object id='rval' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.2lf%s
+</property>
+<property type="string" id="legend" mode="w" >
+Transmit dBm
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+CmdTxDbm_rval
+</property>
+<property type="string" id="cFunc" mode="w" >
+AVERAGE
+</property>
+</object>
+</tomanycont>
+</object>
+</tomanycont>
+</object>
+<!-- ('', 'zport', 'dmd', 'Devices', 'rrdTemplates', 'CiscoPluggableOpticsSensorTelnetCmdvoltsdc') -->
+<object id='/zport/dmd/Devices/rrdTemplates/CiscoPluggableOpticsSensorTelnetCmdvoltsdc' module='Products.ZenModel.RRDTemplate' class='RRDTemplate'>
+<property type="string" id="targetPythonClass" mode="w" >
+ZenPacks.community.CiscoPluggableOptics.CiscoPluggableOptics.CiscoPluggableOptics
+</property>
+<tomanycont id='datasources'>
+<object id='CmdVolts' module='Products.ZenModel.BasicDataSource' class='BasicDataSource'>
+<property select_variable="sourcetypes" type="selection" id="sourcetype" mode="w" >
+COMMAND
+</property>
+<property type="boolean" id="enabled" mode="w" >
+True
+</property>
+<property type="string" id="eventClass" mode="w" >
+/Cmd/Fail
+</property>
+<property type="int" id="severity" mode="w" >
+3
+</property>
+<property type="string" id="commandTemplate" mode="w" >
+${here/ZenPackManager/packs/ZenPacks.community.CiscoPluggableOptics/path}/libexec/telnet_parser.pl ${dev/manageIp} ${device/zCommandUsername} ${device/zCommandPassword} volts ${here/ifDescr}
+</property>
+<property type="int" id="cycletime" mode="w" >
+300
+</property>
+<property type="boolean" id="usessh" mode="w" >
+False
+</property>
+<property type="string" id="parser" mode="w" >
+Auto
+</property>
+<tomanycont id='datapoints'>
+<object id='rval' module='Products.ZenModel.RRDDataPoint' class='RRDDataPoint'>
+<property select_variable="rrdtypes" type="selection" id="rrdtype" mode="w" >
+GAUGE
+</property>
+<property type="boolean" id="isrow" mode="w" >
+True
+</property>
+</object>
+</tomanycont>
+</object>
+</tomanycont>
+<tomanycont id='graphDefs'>
+<object id='Volts' module='Products.ZenModel.GraphDefinition' class='GraphDefinition'>
+<property type="int" id="height" mode="w" >
+100
+</property>
+<property type="int" id="width" mode="w" >
+500
+</property>
+<property type="boolean" id="log" mode="w" >
+False
+</property>
+<property type="boolean" id="base" mode="w" >
+False
+</property>
+<property type="int" id="miny" mode="w" >
+-1
+</property>
+<property type="int" id="maxy" mode="w" >
+-1
+</property>
+<property type="boolean" id="hasSummary" mode="w" >
+True
+</property>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<tomanycont id='graphPoints'>
+<object id='rval' module='Products.ZenModel.DataPointGraphPoint' class='DataPointGraphPoint'>
+<property type="long" id="sequence" mode="w" >
+0
+</property>
+<property select_variable="lineTypes" type="selection" id="lineType" mode="w" >
+LINE
+</property>
+<property type="long" id="lineWidth" mode="w" >
+1
+</property>
+<property type="boolean" id="stacked" mode="w" >
+False
+</property>
+<property type="string" id="format" mode="w" >
+%5.2lf%s
+</property>
+<property type="string" id="legend" mode="w" >
+Volts DC
+</property>
+<property type="long" id="limit" mode="w" >
+-1
+</property>
+<property type="string" id="dpName" mode="w" >
+CmdVolts_rval
 </property>
 <property type="string" id="cFunc" mode="w" >
 AVERAGE
