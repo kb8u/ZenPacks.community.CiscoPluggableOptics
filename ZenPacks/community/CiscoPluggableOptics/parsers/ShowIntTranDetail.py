@@ -19,6 +19,7 @@ from Products.ZenRRD.CommandParser import CommandParser
 
 logger = logging.getLogger('.'.join(['zen', __name__]))
 
+# see http://wiki.zenoss.org/Developing_a_Command_Parser-Based_ZenPack
 class ShowIntTranDetail(CommandParser):
 
     def processResults(self, cmd, result):
