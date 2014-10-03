@@ -19,8 +19,7 @@ Zenoss
 ------
 
 You must first have, or install, Zenoss 2.5.2 or later. This ZenPack was tested
-against Zenoss 2.5.2, and Zenoss 3.2.  You can download the free Core
-version of Zenoss from http://community.zenoss.org/community/download.
+against Zenoss 2.5.2, 3.2 and 4.2.4.
 
 
 Installation
@@ -30,8 +29,7 @@ Normal Installation (packaged egg)
 ----------------------------------
 
 Download the `CiscoPluggableOptics ZenPack <http://wiki.zenoss.org/ZenPack:CiscoPluggableOptics>`_.
-Copy the .egg file to your Zenoss server and run the following commands as the zenoss
-user.
+Install the zenpack through the zenoss GUI and restart zenoss, or copy the .egg file to your Zenoss server and run the following commands as the zenoss user.
 
     ::
 
