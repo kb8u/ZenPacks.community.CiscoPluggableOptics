@@ -54,7 +54,7 @@ Run SNMP queries, process returned values, find Cisco PluggableOptics sensors
         log.info('Starting process() for modeler CiscoPluggableOpticsMap')
 
         # sensor names match if they contain an interface name append with:
-        _sensor_regex = r'\s+.*[temperature|current|voltage|power]'
+        _sensor_regex = r'\s+.*(temperature|current|voltage|power)'
 
         # from CISCO-ENTITY-SENSOR-MIB
         _SensorDataType = {
@@ -103,8 +103,16 @@ Run SNMP queries, process returned values, find Cisco PluggableOptics sensors
         
         # iterate over ifDescrs to find matching sensors
         for ifDescr, ifIndex in ifDescrs.iteritems():
+            intfSlot = 'no ifDescr slot match'
+            m = re.search(r"\D+([\d\/]+)(\/\d+)", ifDescr)
+            if m:
+                intfSlot = m.group(1) + m.group(2)
             for physDescr, physIndex in physDescrs.iteritems():
-                if re.search(ifDescr + _sensor_regex, physDescr, re.IGNORECASE):
+                physSlot = 'no physDescr slot match'
+                m = re.search(r"slot\s+([\d\/]+)\s+transceiver.*\s+(\d+)\s+.*(temperature|current|voltage|power)", physDescr, re.IGNORECASE)
+                if m:
+                    physSlot = m.group(1) + m.group(2)
+                if re.search(ifDescr + _sensor_regex, physDescr, re.IGNORECASE) or intfSlot == physSlot:
                     try:
                       log.info('Found sensor %s' % physDescr)
                       if entSensorValueEntry[physIndex]['entSensorStatus'] != 1:
