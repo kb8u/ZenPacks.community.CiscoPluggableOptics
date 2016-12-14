@@ -104,7 +104,7 @@ Run SNMP queries, process returned values, find Cisco PluggableOptics sensors
         # iterate over ifDescrs to find matching sensors
         for ifDescr, ifIndex in ifDescrs.iteritems():
             intfSlot = 'no ifDescr slot match'
-            m = re.search(r"\D+([\d\/]+)(\/\d+)", ifDescr)
+            m = re.search(r"\D+([\d\/]+)(\/\d+)$", ifDescr)
             if m:
                 intfSlot = m.group(1) + m.group(2)
             for physDescr, physIndex in physDescrs.iteritems():
